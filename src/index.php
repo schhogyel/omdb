@@ -41,13 +41,18 @@ function displayMovies($movies)
                 . '<img class="rounded-lg" src="' . $movie->Poster . '" alt="' . $movie->Title . '">'
                 . '</div>'
                 . '<div class="text-' . $class . '-500">'
-                . '<h2 class="title-heading pt-2">' . $movie->Title . '</h2>'
+                . '<h5 class="title-heading pt-2">' . $movie->Title . '</h5>'
                 . $movie->Year . '<br />'
                 . '</div>'
                 . '</div>';
         }
         return $html;
     }
+}
+
+function cmp($a, $b)
+{
+    return strcmp($a->Title, $b->Title);
 }
 
 $colorCategory = array("red", "green", "blue", "yellow");
@@ -57,6 +62,9 @@ foreach ($colorCategory as $color) {
     $movies = array_merge($movies, getMoviesBySearch($color));
 }
 
+usort($movies, "cmp");
+
+
 ?>
 
 <!doctype html>
@@ -64,7 +72,7 @@ foreach ($colorCategory as $color) {
 
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>oMDB: Open Movie Database</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -108,18 +116,6 @@ foreach ($colorCategory as $color) {
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
 
-    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-    <script>
-        window.ga = function() {
-            ga.q.push(arguments)
-        };
-        ga.q = [];
-        ga.l = +new Date;
-        ga('create', 'UA-XXXXX-Y', 'auto');
-        ga('set', 'transport', 'beacon');
-        ga('send', 'pageview')
-    </script>
-    <script src="https://www.google-analytics.com/analytics.js" async></script>
 </body>
 
 </html>
