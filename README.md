@@ -27,4 +27,11 @@ The output should be a HTML page that displays each matching movies details (tit
 
 ## To Run this app
 
-`docker-compose up`
+```
+docker-compose up
+```
+
+### Note
+
+- OMDB API doesn't have runtime information
+- OMDB API also doesn't have description in search results
